@@ -3850,3 +3850,10 @@ test things/grid.py
 .venv/Scripts/pythonw.exe
 source/__pycache__/character.cpython-311.pyc
 source/tempCodeRunnerFile.py
+source/__pycache__/board.cpython-311.pyc
+test things/section_two.py
+test things/section.py
+test things/view.py
+test things/__pycache__/section_two.cpython-311.pyc
+test things/__pycache__/section.cpython-311.pyc
+source/__pycache__/const.cpython-311.pyc

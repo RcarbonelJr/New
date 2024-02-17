@@ -1,63 +1,30 @@
 import arcade
 
-from character import Character
+from const import *
 
-tileScaling = .5
-teamScaling = 1
+from board import Board
 
-screenWidth = 960
-screenHeight = 960
-screenTitle = "OSRS Tile Race"
-
-class MyGame(arcade.Window):
+class GameView(arcade.View):
 
     def __init__(self):
-        super().__init__(screenWidth, screenHeight, screenTitle)
+        super().__init__()
 
-        # Tiled map
-        self.tileMap = None
+        # Create the Board
+        self.board = Board(0, 0, BOARD_WIDTH, BOARD_HEIGHT)
 
-        # Sprite used for the teams
-        self.teamSprite = None
-
-        # Sprite list to draw the teams
-        self.teamList = None
-
-        # Grid array to hold the grid coordinates
-        self.grid = []
+        # Add sections to the view
+        self.section_manager.add_section(self.board)
 
     def setup(self):
         """ Set up the game variables. Call to re-start the game. """
         # Create your sprites and sprite lists here
 
-        # Board camera
-        self.camera = arcade.Camera(screenWidth, screenHeight)
-
-        # Tiled map information
-        mapName = "assets/Tiled/board.tmx"
-        self.tileMap = arcade.load_tilemap(mapName, scaling=tileScaling)
-        self.scene = arcade.Scene.from_tilemap(self.tileMap)
-
-        # Temp placeholder for a base team
-        self.teamList = arcade.SpriteList()
-        self.teamSprite = Character(25,(0,0,255))
-        self.teamList.append(self.teamSprite)
+        # Reset the board
+        self.board.setup()
 
     def on_draw(self):
-        """
-        Render the screen.
-        """
-        self.clear()
 
-        self.scene.draw()
-
-        self.teamList.draw()
-
-        for x in range (0, screenWidth, 64):
-            arcade.draw_line(x, 0, x, screenHeight, arcade.color.WHITE, 2)
-
-        for y in range (0, screenHeight, 64):
-            arcade.draw_line(0, y, screenHeight, y, arcade.color.WHITE, 2)
+        arcade.start_render()
 
     def on_update(self, delta_time):
         """
@@ -102,11 +69,19 @@ class MyGame(arcade.Window):
 
 
 def main():
-    """ Main function """
-    window = MyGame()
-    window.setup()
-    arcade.run()
 
+    # Create the Window
+    window = arcade.Window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
+
+    # Create the view
+    view = GameView()
+
+    # Set up the game
+    view.setup()
+
+    window.show_view(view)
+
+    arcade.run()
 
 if __name__ == "__main__":
     main()
