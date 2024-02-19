@@ -3,6 +3,7 @@ import arcade
 from const import *
 
 from board import Board
+from side_panel import SidePanel
 
 class GameView(arcade.View):
 
@@ -12,8 +13,12 @@ class GameView(arcade.View):
         # Create the Board
         self.board = Board(0, 0, BOARD_WIDTH, BOARD_HEIGHT)
 
+        # Create the side panel
+        self.side_panel = SidePanel(BOARD_WIDTH, 0, SIDE_PANEL_WIDTH, SIDE_PANEL_HEIGHT)
+
         # Add sections to the view
         self.section_manager.add_section(self.board)
+        self.section_manager.add_section(self.side_panel)
 
     def setup(self):
         """ Set up the game variables. Call to re-start the game. """
@@ -21,6 +26,7 @@ class GameView(arcade.View):
 
         # Reset the board
         self.board.setup()
+        self.side_panel.setup()
 
     def on_draw(self):
 

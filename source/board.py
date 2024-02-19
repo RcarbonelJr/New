@@ -1,4 +1,5 @@
 import arcade
+from team import Team
 
 from const import *
 
@@ -13,6 +14,7 @@ class Board(arcade.Section):
         # Scene for Tiled Map
         self.scene = None
 
+        """ GRID """
         # 1D list of all sprites in the 2D sprite list
         self.grid_sprite_list = arcade.SpriteList()
 
@@ -32,14 +34,16 @@ class Board(arcade.Section):
                 self.grid_sprite_list.append(sprite)
                 self.grid_sprites[row].append(sprite)
 
+        """ TEAM """
+        # Update to a array later so multiple teams can be added
+        self.team = None
+
     def setup(self):
         
         # Tiled map information
         map_name = "assets/Tiled/board.tmx"
         self.tile_map = arcade.load_tilemap(map_name, scaling=TILE_SCALE)
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
-
-           
 
     def on_draw(self):
 
@@ -67,8 +71,4 @@ class Board(arcade.Section):
         if sprite.texture.name == arcade.load_texture(self.tileOutline_black).name:
             sprite.texture = arcade.load_texture(self.tileoutLine_white)
         else:
-           sprite.texture = arcade.load_texture(self.tileOutline_black)
-
-
-                
-                
+           sprite.texture = arcade.load_texture(self.tileOutline_black)            

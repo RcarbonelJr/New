@@ -1,4 +1,9 @@
-# Team class
+import arcade
 
-# Team name
-# Team memebers
+class Team(arcade.SpriteCircle):
+
+    def __init__(self, radius, color):
+        super().__init__(radius, color)
+
+        self.tile_location = None
+        self.team_name = None
