@@ -71,4 +71,4 @@ class Board(arcade.Section):
         if sprite.texture.name == arcade.load_texture(self.tileOutline_black).name:
             sprite.texture = arcade.load_texture(self.tileoutLine_white)
         else:
-           sprite.texture = arcade.load_texture(self.tileOutline_black)            
+           sprite.texture = arcade.load_texture(self.tileOutline_black)

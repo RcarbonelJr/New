@@ -3,7 +3,7 @@ import arcade
 from const import *
 
 from board import Board
-from side_panel import SidePanel
+from side_panel_ui import SidePanel
 
 class GameView(arcade.View):
 
@@ -77,7 +77,7 @@ class GameView(arcade.View):
 def main():
 
     # Create the Window
-    window = arcade.Window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
+    window = arcade.Window(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, resizable=True)
 
     # Create the view
     view = GameView()

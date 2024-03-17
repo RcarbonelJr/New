@@ -3857,3 +3857,4 @@ test things/view.py
 test things/__pycache__/section_two.cpython-311.pyc
 test things/__pycache__/section.cpython-311.pyc
 source/__pycache__/const.cpython-311.pyc
+test things/scrolling_text.py
