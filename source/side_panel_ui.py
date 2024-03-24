@@ -2,6 +2,7 @@ import arcade
 import arcade.gui
 
 from const import *
+from add_team_button import AddTeamButton
 
 class SidePanel(arcade.Section):
 
@@ -35,8 +36,8 @@ class SidePanel(arcade.Section):
         
         # Current tile
         self.current_tile = None
-        self.current_tile_width = TILE_WIDTH
-        self.current_tile_height = TILE_HEIGHT
+        self.current_tile_width = TILE_WIDTH * 2
+        self.current_tile_height = TILE_HEIGHT * 2
         self.current_tile_x_offset = ((self.right - (self.left + self.margin + self.lst_players_width)) / 2) - TILE_WIDTH
 
         # Dice Box
@@ -92,7 +93,7 @@ class SidePanel(arcade.Section):
 
         """ TEAM BUTTONS """
         # Create the buttons
-        self.btn_add_team = arcade.gui.UIFlatButton(width=self.btn_add_team_width, height=self.btn_add_team_height, text="Add Team")
+        self.btn_add_team = AddTeamButton(width=self.btn_add_team_width, height=self.btn_add_team_height, text="Add Team")
         self.btn_edit_team = arcade.gui.UIFlatButton(width=self.btn_edit_team_width, height=self.btn_edit_team_height, text="Edit Team")
 
         # Add the buttons
@@ -118,7 +119,7 @@ class SidePanel(arcade.Section):
 
         # Create the player list
         self.lst_players_bg = arcade.load_texture(":resources:gui_basic_assets/window/grey_panel.png")
-        self.lst_players_text = arcade.gui.UITextArea(width=self.lst_players_width, height=self.lst_players_height, text="Names go here", text_color=(0,0,0,255)) # Update text
+        self.lst_players_text = arcade.gui.UITextArea(width=self.lst_players_width, height=self.lst_players_height, text="Names \n\n\n\n\ngo \n\n\n\n\nhere", text_color=(0,0,0,255)) # Update text
         self.lst_players = arcade.gui.UITexturePane(self.lst_players_text, self.lst_players_bg, (self.margin, self.margin, self.margin, self.margin))
 
         # Add the player list
@@ -188,3 +189,17 @@ class SidePanel(arcade.Section):
 
         # Draw the UI
         self.manager.draw()
+
+    """ SEND MOUSE INFORMATION TO UIMANAGER """
+    
+    def on_mouse_press(self, x: int, y: int, button: int, modifiers: int):
+        self.manager.on_mouse_press(x, y, button, modifiers)
+
+    def on_mouse_release(self, x: int, y: int, button: int, modifiers: int):
+        self.manager.on_mouse_release(x, y, button, modifiers)
+
+    def on_mouse_scroll(self, x: int, y: int, scroll_x: int, scroll_y: int):
+        self.manager.on_mouse_scroll(x, y, scroll_x, scroll_y)
+
+    def on_mouse_motion(self, x: int, y: int, dx: int, dy: int):
+        self.manager.on_mouse_motion(x, y, dx, dy)

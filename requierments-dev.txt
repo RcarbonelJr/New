@@ -1,1 +1,2 @@
-arcade>=2.6.17,<3.0
+arcade >= 2.6.17, <3.0
+customtikinter >= 5.2.2, <5.0.0
